@@ -7,11 +7,9 @@ lines = [list(map(int, list(x.strip()))) for x in lines]
 def f(nums, start, rem):
     if not rem:
         return []
-    mx, mx_idx = -1, -1
-    for i in range(start, len(nums) - rem + 1):
-        if nums[i] > mx:
-            mx, mx_idx = nums[i], i
-    return [mx] + f(nums, mx_idx + 1, rem - 1)
+    end = len(nums) - rem + 1
+    mx = max(nums[start:end])
+    return [mx] + f(nums, nums.index(mx, start, end) + 1, rem - 1)
 
 
 ans_1, ans_2 = 0, 0
