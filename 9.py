@@ -6,8 +6,6 @@ with open("9.in", "r") as f:
 
 
 ans = 0
-xmax, xmin = max(x for x, y in points), min(x for x, y in points)
-ymax, ymin = max(y for x, y in points), min(y for x, y in points)
 for p1 in points:
     x1, y1 = p1
     for p2 in points:
@@ -21,23 +19,17 @@ print(ans)
 
 
 polygon = Polygon((x, y) for x, y in points)
-squares: list[Polygon] = []
-j = 0
-ans = -1
+ans = 0
 for p1 in points:
-    j += 1
     x1, y1 = p1
     for p2 in points:
         if p1 == p2:
             continue
         x2, y2 = p2
-        r = Polygon([(x1, y1), (x1, y2), (x2, y2), (x2, y1)])
-        # I would like to find max_{r: r covers polygon} area(r)
-        if polygon.covers(r):
-            # plotting.plot_polygon(r)
-            # plotting.plot_polygon(polygon)
-            # Picks theorem
-            interior_points = r.area - r.length / 2 + 1
-            ans = max(ans, interior_points + r.length)
-
+        poly = Polygon([(x1, y1), (x1, y2), (x2, y2), (x2, y1)])
+        # poly is now a rectangle. I would like to find max_{poly covers polygon} area(poly)
+        if polygon.covers(poly):
+            # Picks theorem :) Using the same simple method as in part 1 is enough too...
+            interior_points = poly.area - poly.length / 2 + 1
+            ans = max(ans, interior_points + poly.length)
 print(int(ans))
