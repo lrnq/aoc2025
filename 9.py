@@ -32,7 +32,7 @@ for p1 in points:
             continue
         x2, y2 = p2
         r = Polygon([(x1, y1), (x1, y2), (x2, y2), (x2, y1)])
-        # I would like to find max_{r:  r covers polygon} area(r)
+        # I would like to find max_{r: r covers polygon} area(r)
         if polygon.covers(r):
             # plotting.plot_polygon(r)
             # plotting.plot_polygon(polygon)
