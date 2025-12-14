@@ -27,7 +27,7 @@ for p1 in points:
             continue
         x2, y2 = p2
         poly = Polygon([(x1, y1), (x1, y2), (x2, y2), (x2, y1)])
-        # poly is now a rectangle. I would like to find max_{poly covers polygon} area(poly)
+        # I would like to find max_{poly: poly covers polygon} area(poly)
         if polygon.covers(poly):
             # Picks theorem :) Using the same simple method as in part 1 is enough too...
             interior_points = poly.area - poly.length / 2 + 1
